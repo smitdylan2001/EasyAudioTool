@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -87,7 +85,7 @@ public class PlayerAudioComponent : MonoBehaviour
 			//Check if target has an audiosource
 			if (col.gameObject.GetComponent<AudioSource>())
 			{
-				_audioManager.PlayAudio(col.gameObject, AudioContents.StartType.OnTriggerVolume);
+				_audioManager.PlayAudio(col.gameObject, AudioContents.StartType.OnTrigger);
 			}
 			else Debug.LogWarning(col.gameObject + " has no Audio Source!");
 		}

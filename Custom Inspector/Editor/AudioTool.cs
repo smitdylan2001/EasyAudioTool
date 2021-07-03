@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
-//TODO: THIS IS A WIP FILE AND IS NOT FINISHED OR IN APLHA PHASE!
 public class AudioTool : EditorWindow
 {
     private GameObject _audioManagerGO;
@@ -43,6 +39,7 @@ public class AudioTool : EditorWindow
             {
                 _audioManagerGO = new GameObject("AudioManager");
                 _audioManagerScript = _audioManagerGO.AddComponent<AudioManager>();
+                Selection.activeGameObject = _audioManagerGO;
             }
         }
         //Try to get the audio manager script
@@ -55,6 +52,7 @@ public class AudioTool : EditorWindow
             if (GUILayout.Button("Add Audio Manager Component to " + _audioManagerGO.name))
             {
                 _audioManagerScript = _audioManagerGO.AddComponent<AudioManager>();
+                Selection.activeGameObject = _audioManagerGO;
             } 
         }
         
@@ -63,6 +61,11 @@ public class AudioTool : EditorWindow
 		{
             if(!_player) _player = GetPlayer();
             if(!_player) EditorGUI.LabelField(new Rect(3, 25, position.width - 6, 60), "Warning:", "No GameObject named 'Player' or with tag 'Player' exists, please drag the player Game Object onto the 'AudioManager' component on the '" + _audioManagerGO.name + "' Game Object in your scene.");
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("Select AudioManager"))
+            {
+                Selection.activeGameObject = _audioManagerGO;
+            }
         }
 
         this.Repaint();
